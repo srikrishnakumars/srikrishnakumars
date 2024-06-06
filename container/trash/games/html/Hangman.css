@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+}
+
+#word-display {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#guesses-left {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+#letters {
+  margin-bottom: 20px;
+}
+
+#letters button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#reset-btn {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+}

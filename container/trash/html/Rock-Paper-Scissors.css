@@ -1,0 +1,19 @@
+.container {
+  text-align: center;
+}
+
+.choices {
+  margin-bottom: 20px;
+}
+
+.choice {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#result {
+  font-size: 1.5em;
+  font-weight: bold;
+}

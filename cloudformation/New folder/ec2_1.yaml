@@ -1,0 +1,22 @@
+PublicEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref PublicInstanceType
+      SecurityGroupIds:
+        - !GetAtt PublicSecurityGroup.GroupId
+      SubnetId:subnet-0ca2b3e83b9c35a5a
+      ImageId:ami-007020fd9c84e18c7
+
+Resources:
+  PublicSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access for public instance
+      VpcId:vpc-0d86c49b6feb6c51f
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+
+

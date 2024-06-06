@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Places</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block; /* Display horizontally */
+            margin-right: 20px;
+            position: relative; /* To position the submenu */
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block; /* Make the whole area clickable */
+            padding: 10px;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        .submenu {
+            display: none;
+            background-color: #666;
+            padding: 10px;
+            position: absolute; /* Position absolutely */
+            top: 100%; /* Align below the parent */
+            left: 0; /* Align with the left edge of the parent */
+            width: 200px; /* Set a width */
+        }
+        nav ul li:hover .submenu {
+            display: block;
+        }
+        .submenu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .submenu ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tourist Places</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Tamil Nadu</a>
+                <div class="submenu">
+                    <ul>
+                        <li><a href="#">Chennai</a></li>
+                        <li><a href="#">Madurai</a></li>
+                        <li><a href="#">Ooty</a></li>
+                        <!-- Add more locations as needed -->
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">Kerala</a>
+                <div class="submenu">
+                    <ul>
+                        <li><a href="#">Kochi</a></li>
+                        <li><a href="#">Munnar</a></li>
+                        <li><a href="#">Alappuzha</a></li>
+                        <!-- Add more locations as needed -->
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">Karnataka</a>
+                <div class="submenu">
+                    <ul>
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Mysore</a></li>
+                        <li><a href="#">Hampi</a></li>
+                        <!-- Add more locations as needed -->
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Content Area -->
+    <div id="content">
+        <!-- Content will be loaded dynamically based on user selection -->
+    </div>
+
+</body>
+</html>

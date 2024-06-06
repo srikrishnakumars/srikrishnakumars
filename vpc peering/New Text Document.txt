@@ -1,0 +1,87 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template for setting up VPC peering connection between VPC_1 and VPC_2
+
+Resources:
+  VPC1:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: '10.0.0.0/16'
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+
+  PublicSubnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC1
+      CidrBlock: '10.0.1.0/24'
+      AvailabilityZone: 'us-east-1a'
+
+  PrivateSubnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC1
+      CidrBlock: '10.0.2.0/24'
+      AvailabilityZone: 'us-east-1b'
+
+  VPC2:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: '192.168.0.0/16'
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+
+  PublicSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC2
+      CidrBlock: '192.168.1.0/24'
+      AvailabilityZone: 'us-east-1a'
+
+  PrivateSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC2
+      CidrBlock: '192.168.2.0/24'
+      AvailabilityZone: 'us-east-1b'
+
+  PeeringConnection:
+    Type: 'AWS::EC2::VPCPeeringConnection'
+    Properties:
+      VpcId: !Ref VPC1
+      PeerVpcId: !Ref VPC2
+      PeerRegion: 'us-east-1'
+
+  PeeringConnectionAccepter:
+    Type: 'AWS::EC2::VPCPeeringConnectionAccepter'
+    Properties:
+      VpcPeeringConnectionId: !Ref PeeringConnection
+      PeerVpcId: !Ref VPC2
+
+  RouteTable1:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC1
+
+  Route1:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref RouteTable1
+      DestinationCidrBlock: '192.168.0.0/16'
+      VpcPeeringConnectionId: !Ref PeeringConnection
+
+  RouteTable2:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC2
+
+  Route2:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref RouteTable2
+      DestinationCidrBlock: '10.0.0.0/16'
+      VpcPeeringConnectionId: !Ref PeeringConnection
+
+Outputs:
+  VPCPeeringConnectionId:
+    Value: !Ref PeeringConnection
+    Description: ID of the VPC Peering Connection

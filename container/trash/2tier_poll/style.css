@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+}
+.header, .footer {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.site-name {
+    font-weight: bold;
+    color: #ff5733; /* Orange color for site name */
+}
+.tier1, .tier2 {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.tier-link {
+    font-weight: bold;
+}
+
+.tier1-link {
+    color: #ff5733; /* Orange color for Tier 1 */
+}
+
+.tier2-link {
+    color: #33aaff; /* Blue color for Tier 2 */
+}

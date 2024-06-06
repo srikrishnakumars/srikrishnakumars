@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation Template for EC2 Instances in Public and Private Subnets
+
+Parameters:
+  PublicInstanceType:
+    Description: Instance type for the EC2 instance in the public subnet
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t2.medium
+    ConstraintDescription: Must be a valid EC2 instance type.
+
+  PrivateInstanceType:
+    Description: Instance type for the EC2 instance in the private subnet
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t2.medium
+    ConstraintDescription: Must be a valid EC2 instance type.
+
+  ExistingVPCId: vpc-0d86c49b6feb6c51f
+                     # Enter VPC ID here
+    Description: ID of the existing VPC where the instances will be launched
+    Type: AWS::EC2::VPC::Id
+
+  ExistingPublicSubnetId: subnet-0ca2b3e83b9c35a5a    
+    Description: ID of the existing public subnet where the instance will be launched
+    Type: AWS::EC2::Subnet::Id
+
+  ExistingPrivateSubnetId: subnet-0296cb306f517193d
+    Description: ID of the existing private subnet where the instance will be launched
+    Type: AWS::EC2::Subnet::Id
+
+Resources:
+  PublicSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access for public instance
+      VpcId: !Ref ExistingVPCId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+
+  PrivateSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Allow all traffic from within the VPC
+      VpcId: !Ref ExistingVPCId
+      SecurityGroupIngress:
+        - IpProtocol: -1
+          FromPort: '0'
+          ToPort: '65535'
+          CidrIp: 10.0.0.0/16
+
+  PublicEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref PublicInstanceType
+      SecurityGroupIds:
+        - !GetAtt PublicSecurityGroup.GroupId
+      SubnetId: !Ref ExistingPublicSubnetId
+      ImageId: 'ami-007020fd9c84e18c7' # Insert your desired AMI ID here
+
+  PrivateEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref PrivateInstanceType
+      SecurityGroupIds:
+        - !GetAtt PrivateSecurityGroup.GroupId
+      SubnetId: !Ref ExistingPrivateSubnetId
+      ImageId: 'ami-007020fd9c84e18c7# Insert your desired AMI ID here
+

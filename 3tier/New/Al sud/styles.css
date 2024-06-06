@@ -1,0 +1,26 @@
+.container {
+  text-align: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  gap: 1px;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  background-color: #ffffff;
+}
+
+.cell.empty {
+  background-color: #f0f0f0;
+}

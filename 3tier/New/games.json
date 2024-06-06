@@ -1,0 +1,16 @@
+{
+  "games": [
+    {
+      "name": "Tic-Tac-Toe",
+      "link": "https://your-bucket-name.s3.amazonaws.com/tic_tac_toe.html"
+    },
+    {
+      "name": "Sudoku",
+      "link": "https://your-bucket-name.s3.amazonaws.com/sudoku.html"
+    },
+    {
+      "name": "Guess the Number",
+      "link": "https://your-bucket-name.s3.amazonaws.com/guess_the_number.html"
+    }
+  ]
+}

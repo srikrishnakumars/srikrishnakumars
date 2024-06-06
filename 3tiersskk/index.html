@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itinerary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Travel Itinerary</h1>
+    </header>
+    <main>
+        <section id="search-form">
+            <h2>Choose Your Destination</h2>
+            <form id="itinerary-form">
+                <label for="origin">Origin:</label>
+                <input type="text" id="origin" name="origin" required>
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+                <label for="days">Number of Days:</label>
+                <input type="number" id="days" name="days" required>
+                <button type="submit">Get Itinerary</button>
+            </form>
+        </section>
+        <section id="itinerary-results">
+            <!-- Itinerary results will be displayed here -->
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
